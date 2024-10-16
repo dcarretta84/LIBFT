@@ -9,20 +9,20 @@
 /*   Updated: 2024/09/26 16:33:15 by dacarret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*#include <stdio.h>*/
+#include "libft.h"
+
 char	*ft_strchr(const char *str, int c)
 {
 	int	x;
 	int	y;
 
-	x = 0;
 	y = 0;
-	while (str[x] != '\0')
-		x++;
+	x = ft_strlen(str);
+	c = (unsigned char) c;
 	while (y <= x)
 	{
 		if (str[y] == c)
-			return (&str[y]);
+			return ((char *) str + y);
 		y++;
 	}
 	return (NULL);

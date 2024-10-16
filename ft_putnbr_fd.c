@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dacarret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 11:22:05 by dacarret          #+#    #+#             */
-/*   Updated: 2024/09/26 12:17:25 by dacarret         ###   ########.fr       */
+/*   Created: 2024/10/15 10:20:04 by dacarret          #+#    #+#             */
+/*   Updated: 2024/10/15 10:36:10 by dacarret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	y;
+	char	digit;
 
-	y = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	else
+	if (n == -2147483648)
 	{
-		while (src[y] && (y < size -1))
-		{
-			dst[y] = src[y];
-			y++;
-		}
-		dst[y] = '\0';
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	while (src[y])
-		y++;
-	return (y);
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	digit = n % 10 + '0';
+	write(fd, &digit, 1);
+	return ;
 }
-/*int	main(void)
+/*int main()
 {
-	char dest[10];
-	char src[] = "ciaot";
-	size_t x = ft_strlcpy(dest, src, 10);
-	printf("%zu\n", x);
-	printf("%s\n", dest);
-	return (0);
+  int x = -12345;
+  ft_putnbr_fd(x, 1);
+  return (0);
 }*/

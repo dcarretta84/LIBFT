@@ -9,16 +9,15 @@
 /*   Updated: 2024/09/27 14:56:24 by dacarret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*#include <stdio.h>*/
+#include "libft.h"
+
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char	*s;
 	unsigned char	*d;
-	size_t			x;
 
 	s = (unsigned char *)src;
 	d = (unsigned char *)dest;
-	x = 0;
 	if (!dest && !src)
 		return (NULL);
 	else if (dest == src)

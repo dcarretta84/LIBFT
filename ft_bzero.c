@@ -9,7 +9,7 @@
 /*   Updated: 2024/09/20 16:04:45 by dacarret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*#include <stdio.h>*/
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -20,7 +20,7 @@ void	ft_bzero(void *s, size_t n)
 	p = (unsigned char *)s;
 	while (x < n)
 	{
-		p[x] = '0';
+		p[x] = '\0';
 		x++;
 	}
 }

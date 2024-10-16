@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dacarret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 11:22:05 by dacarret          #+#    #+#             */
-/*   Updated: 2024/09/26 12:17:25 by dacarret         ###   ########.fr       */
+/*   Created: 2024/10/11 13:35:48 by dacarret          #+#    #+#             */
+/*   Updated: 2024/10/11 13:40:54 by dacarret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+/*static void	ft_change(unsigned int i, char *c)
 {
-	size_t	y;
+	if (i % 2 == 0)
+		*c = '0';
+	return ;
+}*/
 
-	y = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	else
+void	ft_striteri(char const *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	i;
+	unsigned int	len;
+
+	i = 0;
+	if (!s || !f)
+		return ;
+	len = ft_strlen(s);
+	while (i < len)
 	{
-		while (src[y] && (y < size -1))
-		{
-			dst[y] = src[y];
-			y++;
-		}
-		dst[y] = '\0';
+		f(i, (char *)&s[i]);
+		i++;
 	}
-	while (src[y])
-		y++;
-	return (y);
+	return ;
 }
 /*int	main(void)
 {
-	char dest[10];
-	char src[] = "ciaot";
-	size_t x = ft_strlcpy(dest, src, 10);
-	printf("%zu\n", x);
-	printf("%s\n", dest);
+	char	*string = "ciao a tutti vado al bar";
+	char	*res = ft_striteri(string, ft_change);
 	return (0);
 }*/

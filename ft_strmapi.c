@@ -1,38 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dacarret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 09:48:52 by dacarret          #+#    #+#             */
-/*   Updated: 2024/09/27 14:52:51 by dacarret         ###   ########.fr       */
+/*   Created: 2024/10/11 13:15:51 by dacarret          #+#    #+#             */
+/*   Updated: 2024/10/11 13:31:16 by dacarret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+/*static char	*ft_change(unsigned int i, char c)
 {
-	size_t			x;
-	unsigned char	*s;
-	unsigned char	*d;
+	if (i % 2 == 0)
+		c = '0';
+	return (c);
+}*/
 
-	x = 0;
-	s = (unsigned char *)src;
-	d = (unsigned char *)dest;
-	if (!dest && !src)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	size_t	i;
+	size_t	len;
+	char	*p;
+
+	i = 0;
+	if (!s || !f)
 		return (NULL);
-	while (x < n)
+	len = ft_strlen(s);
+	p = (char *)malloc((len + 1) * sizeof(char));
+	if (p == NULL)
+		return (NULL);
+	while (s[i] != '\0')
 	{
-		d[x] = s[x];
-		x++;
+		p[i] = f(i, s[i]);
+		i++;
 	}
-	return (dest);
+	p[i] = '\0';
+	return (p);
 }
 /*int	main(void)
 {
-	char src[] = "";
-	ft_memcpy(src + 5, src, 5);
-	printf("%s\n", src);
+	char	*string = "ciao a tutti vado al bar";
+	char	*res = ft_strmapi(string, ft_change);
 	return (0);
 }*/

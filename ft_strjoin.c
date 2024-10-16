@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dacarret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 11:22:05 by dacarret          #+#    #+#             */
-/*   Updated: 2024/09/26 12:17:25 by dacarret         ###   ########.fr       */
+/*   Created: 2024/10/09 14:55:58 by dacarret          #+#    #+#             */
+/*   Updated: 2024/10/09 15:04:22 by dacarret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	y;
+	size_t	x;
+	size_t	i;
+	size_t	len_tot;
+	char	*res;
 
-	y = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	else
+	i = 0;
+	x = 0;
+	if (!s1 && !s2)
+		return (NULL);
+	len_tot = ft_strlen(s1) + ft_strlen(s2);
+	res = (char *)malloc((len_tot + 1) * sizeof(char));
+	if (res == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		while (src[y] && (y < size -1))
-		{
-			dst[y] = src[y];
-			y++;
-		}
-		dst[y] = '\0';
+		res[i] = s1[i];
+		i++;
 	}
-	while (src[y])
-		y++;
-	return (y);
+	while (s2[x] != '\0')
+	{
+		res[i + x] = s2[x];
+		x++;
+	}
+	res[i + x] = '\0';
+	return (res);
 }
-/*int	main(void)
-{
-	char dest[10];
-	char src[] = "ciaot";
-	size_t x = ft_strlcpy(dest, src, 10);
-	printf("%zu\n", x);
-	printf("%s\n", dest);
-	return (0);
-}*/
